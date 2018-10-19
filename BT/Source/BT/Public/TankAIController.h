@@ -17,9 +17,11 @@ class BT_API ATankAIController : public AAIController
 	
 protected:
 	void BeginPlay() override;
+	void Tick(float DeltaTime) override;
 
 public:
-	ATank * GetControlledTank();
+	ATank* GetControlledTank() const;
+	ATank* GetFirstPlayerTank() const;
 	
 	
 };
