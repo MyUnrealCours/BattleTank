@@ -35,5 +35,5 @@ ATank* ATankAIController::GetFirstPlayerTank() const
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Warning, TEXT("Tick! Tick! Tick!"));
+	// UE_LOG(LogTemp, Warning, TEXT("Tick! Tick! Tick!"));
 }
