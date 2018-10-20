@@ -24,7 +24,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 	FVector HitLocation;
 	if (GetSightRayHitlocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location : %s"), *HitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location : %s"), *HitLocation.ToString());
 	}
 	
 }
@@ -45,10 +45,30 @@ ATank * ATankPlayerController::GetFirstPlayerTank() const
 
 bool ATankPlayerController::GetSightRayHitlocation(FVector & OUTHitLocation) const
 {
+	//Finding Crosshair position in pixel coordinates.
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
 	auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+	
+	//Derojection the crosshair position to world.
+	FVector  CameraDirection;
+	if (GetLookDirection(ScreenLocation,CameraDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("CrossHair Direction : %s"), *CameraDirection.ToString());
+	}
+	
 	return true;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D & ScreenLocation, FVector & LookDirection) const
+{
+	FVector CameraLocation;// to be deleted  
+	return DeprojectScreenPositionToWorld(
+		ScreenLocation.X, 
+		ScreenLocation.Y, 
+		CameraLocation, 
+		LookDirection
+	);
 }
 
 
