@@ -45,7 +45,9 @@ ATank * ATankPlayerController::GetFirstPlayerTank() const
 
 bool ATankPlayerController::GetSightRayHitlocation(FVector & OUTHitLocation) const
 {
-	OUTHitLocation = FVector(1.0);
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
 	return true;
 }
 
