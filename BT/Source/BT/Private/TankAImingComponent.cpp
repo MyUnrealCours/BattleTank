@@ -17,7 +17,13 @@ UTankAImingComponent::UTankAImingComponent()
 void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 {
 	auto TankName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s aims at %s"), *TankName, *WorldSpaceAim.ToString());
+	auto BarrelLocation = Barrel->GetComponentLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s aims at %s from %s"), *TankName, *WorldSpaceAim.ToString(),*BarrelLocation);
+}
+
+void UTankAImingComponent::SetBarrel(UStaticMeshComponent * BarrelToSet)
+{
+	Barrel = BarrelToSet;
 }
 
 // Called when the game starts
