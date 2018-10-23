@@ -36,4 +36,9 @@ void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	// UE_LOG(LogTemp, Warning, TEXT("Tick! Tick! Tick!"));
+	auto PlayerTank = GetFirstPlayerTank();
+	if (PlayerTank)
+	{
+		GetControlledTank()->AimAt(PlayerTank->GetActorLocation());
+	}
 }

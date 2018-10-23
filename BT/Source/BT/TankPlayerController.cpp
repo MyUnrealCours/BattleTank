@@ -24,7 +24,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 	FVector HitLocation;
 	if (GetSightRayHitlocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location : %s"), *HitLocation.ToString());
+		GetControlledTank()->AimAt(HitLocation);
 	}
 	
 }
