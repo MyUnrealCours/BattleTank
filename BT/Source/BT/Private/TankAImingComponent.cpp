@@ -14,11 +14,10 @@ UTankAImingComponent::UTankAImingComponent()
 }
 
 
-void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
+void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 {
-	auto TankName = GetOwner()->GetName();
-	auto BarrelLocation = Barrel->GetComponentLocation().ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s aims at %s from %s"), *TankName, *WorldSpaceAim.ToString(),*BarrelLocation);
+
+	UE_LOG(LogTemp, Warning, TEXT("Firing at launch speed : %f"), LaunchSpeed);
 }
 
 void UTankAImingComponent::SetBarrel(UStaticMeshComponent * BarrelToSet)

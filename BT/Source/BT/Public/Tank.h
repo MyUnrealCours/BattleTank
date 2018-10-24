@@ -12,7 +12,9 @@ class BT_API ATank : public APawn
 {
 	GENERATED_BODY()
 
-	//UStaticMeshComponent* Barrel = nullptr;
+		UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 100000.0f;
+
 
 public:
 	// Sets default values for this pawn's properties
