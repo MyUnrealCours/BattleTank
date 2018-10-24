@@ -14,7 +14,8 @@ class BT_API UTankAImingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-		UStaticMeshComponent* Barrel = nullptr;
+   UStaticMeshComponent* Barrel = nullptr;
+   void	MoveBarrel(FVector &AimDirection);
 
 public:	
 	// Sets default values for this component's properties
@@ -23,16 +24,6 @@ public:
 	void AimAt(FVector WorldSpaceAim, float LaunchSpeed);
 	
 	void SetBarrel(UStaticMeshComponent* BarrelToSet);
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 		
 	
 };
