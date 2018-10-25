@@ -8,13 +8,14 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankAImingComponent.generated.h"
 
+class UTankBarrel;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BT_API UTankAImingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-   UStaticMeshComponent* Barrel = nullptr;
+   UTankBarrel* Barrel = nullptr;
    void	MoveBarrel(FVector &AimDirection);
 
 public:	
@@ -23,7 +24,7 @@ public:
 
 	void AimAt(FVector WorldSpaceAim, float LaunchSpeed);
 	
-	void SetBarrel(UStaticMeshComponent* BarrelToSet);
+	void SetBarrel(UTankBarrel* BarrelToSet);
 		
 	
 };

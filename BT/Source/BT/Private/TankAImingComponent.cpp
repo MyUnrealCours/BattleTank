@@ -2,6 +2,7 @@
 
 #include "TankAImingComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "TankBarrel.h"
 
 
 
@@ -37,7 +38,7 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 	}
 }
 
-void UTankAImingComponent::SetBarrel(UStaticMeshComponent * BarrelToSet)
+void UTankAImingComponent::SetBarrel(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -48,6 +49,8 @@ void UTankAImingComponent::MoveBarrel(FVector &AimDirection)
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
+
+	Barrel->Elevate(5);
 }
 
 
