@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(meta = (BlueprintSpawnableComponent))
 class BT_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -17,6 +17,13 @@ class BT_API UTankBarrel : public UStaticMeshComponent
 public:
 	void Elevate(float DegreePerSecond);
 	
-	
+	UPROPERTY(EditAnywhere, category = Setup)
+	float MaxDegreePerSecond = 20.0;
+
+	UPROPERTY(EditAnywhere, category = Setup)
+	float MaxElevationDegree = 40.0; // TODO Set 
+
+	UPROPERTY(EditAnywhere, category = Setup)
+	float MinElevationDegree = 0.0; // TODO Set
 	
 };
