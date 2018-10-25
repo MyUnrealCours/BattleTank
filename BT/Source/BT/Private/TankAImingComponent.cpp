@@ -2,6 +2,7 @@
 
 #include "TankAImingComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 #include "TankBarrel.h"
 
 
@@ -35,6 +36,13 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 	{
 		auto AimDirection = OutTossVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
+		auto time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f : Aim Solution Found"), time);
+	}
+	else
+	{
+		auto time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f : No Aim Solution"),time);
 	}
 }
 
