@@ -21,15 +21,21 @@ UTankAImingComponent::UTankAImingComponent()
 
 void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 {
-	if (!Barrel) { return; }
+	
+	if (!Barrel) { return;}
+
 	FVector OutTossVelocity(0);
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
+	
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(
 		this,
 		OutTossVelocity,
 		StartLocation,
 		WorldSpaceAim,
 		LaunchSpeed,
+		false,
+		0,
+		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 	if (bHaveAimSolution)
