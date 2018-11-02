@@ -24,6 +24,11 @@ void ATank::SetBarrel(UTankBarrel * BarrelToSet)
 	TankAimingComponent->SetBarrel(BarrelToSet);
 }
 
+void ATank::SetTurret(UTankTurret * TurretToSet)
+{
+	TankAimingComponent->SetTurret(TurretToSet);
+}
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {

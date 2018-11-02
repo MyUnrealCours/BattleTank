@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 
 
@@ -55,6 +56,11 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 void UTankAImingComponent::SetBarrel(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
+}
+
+void UTankAImingComponent::SetTurret(UTankTurret * TurretToSet)
+{
+	Turret = TurretToSet;
 }
 
 
