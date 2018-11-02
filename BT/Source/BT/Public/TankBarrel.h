@@ -16,7 +16,9 @@ class BT_API UTankBarrel : public UStaticMeshComponent
 
 public:
 	void Elevate(float RelativeSpeed);
-	
+
+private:
+
 	UPROPERTY(EditAnywhere, category = Setup)
 	float MaxDegreePerSecond = 20.0;
 
