@@ -9,6 +9,7 @@
 class UTankAImingComponent;
 class UTankBarrel;
 class UTankTurret;
+class AProjectile;
 
 UCLASS()
 class BT_API ATank : public APawn
@@ -36,6 +37,11 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UTankAImingComponent* TankAimingComponent = nullptr;
+
+	UPROPERTY(EditAnywhere, category = Setup)
+	TSubclassOf<AProjectile> ProjectileBluePrint;
+
+	UTankBarrel* Barrel;
 
 public:	
 
