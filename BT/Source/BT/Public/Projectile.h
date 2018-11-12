@@ -4,12 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.generated.h"
 
 UCLASS()
 class BT_API AProjectile : public AActor
 {
 	GENERATED_BODY()
+
+		UProjectileMovementComponent* ProjectileMovementComponent = nullptr;
 	
 public:	
 	// Sets default values for this actor's properties
@@ -23,6 +26,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void LaunchProjectile(float LaunchSpeed);
+
+    
 	
 	
 };
