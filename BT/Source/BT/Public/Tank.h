@@ -17,7 +17,10 @@ class BT_API ATank : public APawn
 	GENERATED_BODY()
 
 		UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 100000.0f;
+		float LaunchSpeed = 1000.0f;
+
+	float ReloadTimeInSeconds = 3.0f;
+	double LastFireTime = 0;
 
 
 public:
