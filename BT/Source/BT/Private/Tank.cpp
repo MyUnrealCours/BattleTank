@@ -35,7 +35,7 @@ void ATank::SetTurret(UTankTurret * TurretToSet)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
+	//UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
 
 	bool isReload = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 	if (Barrel && isReload) 
