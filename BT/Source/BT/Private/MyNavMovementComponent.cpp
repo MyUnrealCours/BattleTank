@@ -2,6 +2,9 @@
 
 #include "MyNavMovementComponent.h"
 
-
+void UMyNavMovementComponent::IntendMoveForward(float press)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward: %f"), press);
+}
 
 

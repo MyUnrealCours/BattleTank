@@ -15,6 +15,8 @@ class BT_API UMyNavMovementComponent : public UNavMovementComponent
 	GENERATED_BODY()
 	
 	
-	
+public:
+	UFUNCTION(BlueprintCallable)
+	void IntendMoveForward(float press);
 	
 };

@@ -10,6 +10,7 @@ class UTankAImingComponent;
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
+class UMyNavMovementComponent;
 
 UCLASS()
 class BT_API ATank : public APawn
@@ -24,6 +25,7 @@ class BT_API ATank : public APawn
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	double LastFireTime = 0;
+
 
 
 public:
@@ -46,6 +48,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, category = Setup)
 	TSubclassOf<AProjectile> ProjectileBluePrint;
+
+	UPROPERTY(BlueprintReadOnly)
+	UMyNavMovementComponent* MovementComponent = nullptr;
+
 
 	UTankBarrel* Barrel;
 
