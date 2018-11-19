@@ -6,10 +6,11 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "MyNavMovementComponent.generated.h"
 
+class UTankTrack;
 /**
  * 
  */
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BT_API UMyNavMovementComponent : public UNavMovementComponent
 {
 	GENERATED_BODY()
@@ -18,5 +19,13 @@ class BT_API UMyNavMovementComponent : public UNavMovementComponent
 public:
 	UFUNCTION(BlueprintCallable)
 	void IntendMoveForward(float press);
+
+	UFUNCTION(BlueprintCallable)
+	void initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
+
+private:
+	UTankTrack* LeftTrack = nullptr;
+	UTankTrack* RightTrack = nullptr;
 	
+
 };
