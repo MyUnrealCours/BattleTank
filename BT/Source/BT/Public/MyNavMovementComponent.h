@@ -21,6 +21,9 @@ public:
 	void IntendMoveForward(float press);
 
 	UFUNCTION(BlueprintCallable)
+	void IntendRight(float press);
+
+	UFUNCTION(BlueprintCallable)
 	void initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
 private:

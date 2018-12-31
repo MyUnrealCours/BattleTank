@@ -5,14 +5,21 @@
 
 void UMyNavMovementComponent::IntendMoveForward(float press)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward: %f"), press);
+	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(press);
 	RightTrack->SetThrottle(press);
 }
 
+void UMyNavMovementComponent::IntendRight(float press)
+{
+	if (!LeftTrack || !RightTrack) { return; }
+	LeftTrack->SetThrottle(press);
+	RightTrack->SetThrottle(-press);
+}
+
 void UMyNavMovementComponent::initialise(UTankTrack * LeftTrackToSet, UTankTrack * RightTrackToSet)
 {
-	if (!LeftTrackToSet || !RightTrackToSet) { return; }
+
 
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
