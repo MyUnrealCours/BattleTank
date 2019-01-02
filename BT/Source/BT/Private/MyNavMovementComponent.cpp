@@ -24,3 +24,13 @@ void UMyNavMovementComponent::initialise(UTankTrack * LeftTrackToSet, UTankTrack
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
 }
+
+void UMyNavMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AITankIntention = MoveVelocity.GetSafeNormal();
+
+	//IntendMoveForward(FVector::DotProduct(TankForward, AITankIntention));
+
+	IntendRight(FVector::CrossProduct(TankForward, AITankIntention).Z);
+}

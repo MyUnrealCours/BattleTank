@@ -14,7 +14,8 @@ UCLASS()
 class BT_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
-	
+	float AcceptedRadius = 3000.0f;
+
 protected:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
