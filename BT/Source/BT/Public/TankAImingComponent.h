@@ -8,6 +8,14 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankAImingComponent.generated.h"
 
+UENUM()
+enum class EFiringState : uint8
+{
+	Locked,
+	Aiming,
+	Reloading
+};
+
 class UTankBarrel;
 class UTankTurret;
 
@@ -16,6 +24,7 @@ class BT_API UTankAImingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+		
    UTankBarrel* Barrel = nullptr;
    UTankTurret* Turret = nullptr;
    void	MoveBarrel(FVector &AimDirection);
@@ -25,9 +34,12 @@ public:
 	UTankAImingComponent();
 
 	void AimAt(FVector WorldSpaceAim, float LaunchSpeed);
-	
-	void SetBarrel(UTankBarrel* BarrelToSet);
-	void SetTurret(UTankTurret* TurretToSet);
+
+	UFUNCTION(BlueprintCallable)
+	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);
+protected:
+	UPROPERTY(BlueprintReadOnly, Category = State)
+	EFiringState FiringState = EFiringState::Reloading;
 		
 	
 };

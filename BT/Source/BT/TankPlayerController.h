@@ -17,9 +17,12 @@ class BT_API ATankPlayerController : public APlayerController
 protected:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
+
+    UFUNCTION(BlueprintCallable, Category = Setup)
+	ATank* GetControlledTank() const;
 	
 private:
-	ATank* GetControlledTank() const;
+	
 	ATank* GetFirstPlayerTank() const;
 	bool GetSightRayHitlocation(FVector &OUTHitLocation) const;
 

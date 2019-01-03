@@ -19,8 +19,6 @@ void UMyNavMovementComponent::IntendRight(float press)
 
 void UMyNavMovementComponent::initialise(UTankTrack * LeftTrackToSet, UTankTrack * RightTrackToSet)
 {
-
-
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
 }

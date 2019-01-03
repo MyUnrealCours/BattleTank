@@ -47,14 +47,11 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
 	}
 }
 
-void UTankAImingComponent::SetBarrel(UTankBarrel * BarrelToSet)
-{
-	Barrel = BarrelToSet;
-}
 
-void UTankAImingComponent::SetTurret(UTankTurret * TurretToSet)
+void UTankAImingComponent::initialise(UTankBarrel * TankBarrel, UTankTurret * TankTurret)
 {
-	Turret = TurretToSet;
+	Turret = TankTurret;
+	Barrel = TankBarrel;
 }
 
 
