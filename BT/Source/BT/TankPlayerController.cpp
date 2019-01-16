@@ -11,11 +11,11 @@ void ATankPlayerController::BeginPlay()
 	ATank* TankName = GetFirstPlayerTank();
 	if (TankName)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player Controller possesing: %s"), *TankName->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Player Controller possesing: %s"), *TankName->GetName());
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player Controller possesing nothing."));
+		//UE_LOG(LogTemp, Warning, TEXT("Player Controller possesing nothing."));
 	}
 }
 
