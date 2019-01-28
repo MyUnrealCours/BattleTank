@@ -10,6 +10,33 @@
 
 
 
+void UTankAImingComponent::BeginPlay()
+{
+	// So that first first is after initial reload
+	LastFireTime = FPlatformTime::Seconds();
+}
+
+void UTankAImingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
+{
+	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
+	{
+		FiringState = EFiringState::Reloading;
+	}else if (IsBarrelMoving())
+	{
+		FiringState = EFiringState::Aiming;
+	}else
+	{
+		FiringState = EFiringState::Locked;
+	}
+}
+
+bool UTankAImingComponent::IsBarrelMoving()
+{
+	if (!ensure(Barrel)) { return false; }
+	auto BarrelForward = Barrel->GetForwardVector();
+	return !BarrelForward.Equals(AimDirection, 0.01); // vectors are equal
+}
+
 // Sets default values for this component's properties
 UTankAImingComponent::UTankAImingComponent()
 {
@@ -42,7 +69,7 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 	);
 	if (bHaveAimSolution)
 	{
-		auto AimDirection = OutTossVelocity.GetSafeNormal();
+		AimDirection = OutTossVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
 
 	}
@@ -51,10 +78,13 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 void UTankAImingComponent::Fire()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
-	if (!ensure(Barrel && ProjectileBluePrint)) { return; }
-	bool isReload = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-	if (isReload)
+	
+
+	if (FiringState != EFiringState::Reloading)
 	{
+		if (!ensure(Barrel)) { return; }
+		if (!ensure(ProjectileBluePrint)) { return; }
+
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 			ProjectileBluePrint,
 			Barrel->GetSocketLocation(FName("Projectile")),

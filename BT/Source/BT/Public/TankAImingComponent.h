@@ -41,15 +41,24 @@ class BT_API UTankAImingComponent : public UActorComponent
    UPROPERTY(EditAnywhere, category = Setup)
    TSubclassOf<AProjectile> ProjectileBluePrint;
 
+
+   virtual void BeginPlay() override;
+   bool IsBarrelMoving();
+
+   virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
     double LastFireTime = 0;
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
+	FVector AimDirection;
 
 public:	
 	// Sets default values for this component's properties
 	UTankAImingComponent();
 
 	void AimAt(FVector WorldSpaceAim);
+
+	
 
 	UFUNCTION(BlueprintCallable)
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);
