@@ -3,7 +3,6 @@
 #include "Tank.h"
 #include "TankAImingComponent.h"
 #include "Engine/World.h"
-#include "MyNavMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 
@@ -18,17 +17,10 @@ ATank::ATank()
 	UE_LOG(LogTemp, Warning, TEXT("%s Constructor"),*TankName);
 }
 
-void ATank::AimAt(FVector HitLocation)
-{
-	if (TankAimingComponent == NULL) { return; }
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
-}
 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-	auto TankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Dog: %s BeginPlay"), *TankName);
 }
 
 

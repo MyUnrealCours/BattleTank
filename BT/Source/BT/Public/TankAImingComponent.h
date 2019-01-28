@@ -29,11 +29,14 @@ class BT_API UTankAImingComponent : public UActorComponent
    UTankTurret* Turret = nullptr;
    void	MoveBarrel(FVector &AimDirection);
 
+   UPROPERTY(EditDefaultsOnly, Category = "Firing")
+   float LaunchSpeed = 4000;
+
 public:	
 	// Sets default values for this component's properties
 	UTankAImingComponent();
 
-	void AimAt(FVector WorldSpaceAim, float LaunchSpeed);
+	void AimAt(FVector WorldSpaceAim);
 
 	UFUNCTION(BlueprintCallable)
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);

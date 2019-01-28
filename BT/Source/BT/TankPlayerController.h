@@ -18,15 +18,15 @@ protected:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
-    UFUNCTION(BlueprintCallable, Category = Setup)
-	ATank* GetControlledTank() const;
+
 
 	UFUNCTION(BlueprintImplementableEvent, Category = Setup)
 	void FoundAimingComponent(UTankAImingComponent* AimingComponent);
 private:
 	
-	ATank* GetFirstPlayerTank() const;
 	bool GetSightRayHitlocation(FVector &OUTHitLocation) const;
+
+	void AimTowardsCrosshair();
 
 	UPROPERTY(EditDefaultsOnly)
 	float CrosshairXLocation = 0.5;

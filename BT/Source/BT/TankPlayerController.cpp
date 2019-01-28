@@ -3,13 +3,13 @@
 #include "TankPlayerController.h"
 #include "Public/TankAImingComponent.h"
 #include "Engine/World.h"
-#include "Public/Tank.h"
+
 
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAImingComponent>();
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAImingComponent>();
 	if (AimingComponent)
 	{
 		FoundAimingComponent(AimingComponent);
@@ -23,27 +23,11 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	FVector HitLocation;
-	if (GetSightRayHitlocation(HitLocation))
-	{
-		GetControlledTank()->AimAt(HitLocation);
-	}
+    
 	
 }
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
 
-ATank * ATankPlayerController::GetFirstPlayerTank() const
-{
-	ATank* PlayerZero = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	if (PlayerZero == nullptr)
-		return nullptr;
-	else
-		return PlayerZero;
-}
 
 bool ATankPlayerController::GetSightRayHitlocation(FVector & OUTHitLocation) const
 {
@@ -92,6 +76,18 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector &OutHitLocation,FVe
 		return false;
 }
 
+void ATankPlayerController::AimTowardsCrosshair()
+{
+
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAImingComponent>();
+	if (!ensure(AimingComponent)) { return; }
+
+	FVector HitLocation; // Out parameter
+	if (GetSightRayHitlocation(HitLocation)) // Has "side-effect", is going to line trace
+	{
+		AimingComponent->AimAt(HitLocation);
+	}
+}
 
 
 

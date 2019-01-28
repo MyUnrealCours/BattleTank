@@ -20,10 +20,10 @@ UTankAImingComponent::UTankAImingComponent()
 }
 
 
-void UTankAImingComponent::AimAt(FVector WorldSpaceAim,float LaunchSpeed)
+void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 {
 	
-	if (!Barrel) { return;}
+	if (!ensure(Barrel)) { return;}
 
 	FVector OutTossVelocity(0);
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
