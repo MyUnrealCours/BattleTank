@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
+#include "Projectile.h"
 
 
 
@@ -45,6 +46,25 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 		MoveBarrel(AimDirection);
 
 	}
+}
+
+void UTankAImingComponent::Fire()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
+	if (!ensure(Barrel && ProjectileBluePrint)) { return; }
+	bool isReload = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
+	if (isReload)
+	{
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
+			ProjectileBluePrint,
+			Barrel->GetSocketLocation(FName("Projectile")),
+			Barrel->GetSocketRotation(FName("Projectile"))
+			);
+		Projectile->LaunchProjectile(LaunchSpeed);
+		LastFireTime = FPlatformTime::Seconds();
+	}
+
+
 }
 
 
