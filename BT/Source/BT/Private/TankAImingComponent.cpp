@@ -116,7 +116,7 @@ void UTankAImingComponent::initialise(UTankBarrel * TankBarrel, UTankTurret * Ta
 	Barrel = TankBarrel;
 }
 
-int UTankAImingComponent::GetRoundsLeft()
+int UTankAImingComponent::GetRoundsLeft() const
 {
 	return RoundsLeft;
 }

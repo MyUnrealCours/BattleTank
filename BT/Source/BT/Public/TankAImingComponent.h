@@ -67,7 +67,7 @@ public:
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);
 
 	UFUNCTION(BlueprintCallable)
-	int GetRoundsLeft();
+	int GetRoundsLeft() const;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Fire();
