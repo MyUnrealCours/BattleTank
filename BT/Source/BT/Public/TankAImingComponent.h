@@ -58,7 +58,7 @@ public:
 
 	void AimAt(FVector WorldSpaceAim);
 
-	
+	EFiringState GetFiringState() const;
 
 	UFUNCTION(BlueprintCallable)
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);

@@ -75,6 +75,11 @@ void UTankAImingComponent::AimAt(FVector WorldSpaceAim)
 	}
 }
 
+EFiringState UTankAImingComponent::GetFiringState() const
+{
+	return FiringState;
+}
+
 void UTankAImingComponent::Fire()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
