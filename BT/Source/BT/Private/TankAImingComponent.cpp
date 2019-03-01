@@ -18,13 +18,19 @@ void UTankAImingComponent::BeginPlay()
 
 void UTankAImingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
 {
-	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
+	if (RoundsLeft <= 0)
+	{
+		FiringState = EFiringState::OutOfAmmo;
+	}
+	else if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
 	{
 		FiringState = EFiringState::Reloading;
-	}else if (IsBarrelMoving())
+	}
+	else if (IsBarrelMoving())
 	{
 		FiringState = EFiringState::Aiming;
-	}else
+	}
+	else
 	{
 		FiringState = EFiringState::Locked;
 	}
@@ -83,9 +89,9 @@ EFiringState UTankAImingComponent::GetFiringState() const
 void UTankAImingComponent::Fire()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("FIRE!"));
-	
 
-	if (FiringState != EFiringState::Reloading)
+
+	if (FiringState == EFiringState::Locked || FiringState == EFiringState::Aiming)
 	{
 		if (!ensure(Barrel)) { return; }
 		if (!ensure(ProjectileBluePrint)) { return; }
@@ -97,6 +103,7 @@ void UTankAImingComponent::Fire()
 			);
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = FPlatformTime::Seconds();
+		RoundsLeft--;
 	}
 
 
@@ -107,6 +114,11 @@ void UTankAImingComponent::initialise(UTankBarrel * TankBarrel, UTankTurret * Ta
 {
 	Turret = TankTurret;
 	Barrel = TankBarrel;
+}
+
+int UTankAImingComponent::GetRoundsLeft()
+{
+	return RoundsLeft;
 }
 
 

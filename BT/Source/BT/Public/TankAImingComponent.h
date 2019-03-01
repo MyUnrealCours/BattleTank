@@ -13,7 +13,8 @@ enum class EFiringState : uint8
 {
 	Locked,
 	Aiming,
-	Reloading
+	Reloading,
+	OutOfAmmo
 };
 
 class UTankBarrel;
@@ -52,6 +53,8 @@ class BT_API UTankAImingComponent : public UActorComponent
 	UTankTurret* Turret = nullptr;
 	FVector AimDirection;
 
+	int RoundsLeft = 3;
+
 public:	
 	// Sets default values for this component's properties
 	UTankAImingComponent();
@@ -62,6 +65,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);
+
+	UFUNCTION(BlueprintCallable)
+	int GetRoundsLeft();
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Fire();
