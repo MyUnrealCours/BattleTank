@@ -43,6 +43,7 @@ class BT_API UTankAImingComponent : public UActorComponent
    TSubclassOf<AProjectile> ProjectileBluePrint;
 
 
+
    virtual void BeginPlay() override;
    bool IsBarrelMoving();
 
@@ -53,7 +54,7 @@ class BT_API UTankAImingComponent : public UActorComponent
 	UTankTurret* Turret = nullptr;
 	FVector AimDirection;
 
-	int RoundsLeft = 3;
+	int32 RoundsLeft = 3;
 
 public:	
 	// Sets default values for this component's properties
@@ -67,7 +68,7 @@ public:
 	void initialise(UTankBarrel* TankBarrel, UTankTurret* TankTurret);
 
 	UFUNCTION(BlueprintCallable)
-	int GetRoundsLeft() const;
+	int32 GetRoundsLeft() const;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Fire();
